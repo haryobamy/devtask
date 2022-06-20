@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "devtask",
+    "slug": "devtask",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
