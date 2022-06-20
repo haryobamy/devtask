@@ -12,7 +12,13 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import TopHeader from "../components/TopHeader";
 import { COLORS, SIZES } from "../constants";
 import { FONT_SCALE } from "../constants/config";
-import { Entypo, FontAwesome, Ionicons } from "@expo/vector-icons";
+import {
+  Entypo,
+  FontAwesome,
+  Ionicons,
+  Fontisto,
+  FontAwesome5,
+} from "@expo/vector-icons";
 import TransactionCards from "../components/TransactionCards";
 
 const { width, height } = Dimensions.get("window");
@@ -58,6 +64,7 @@ const PortfolioCards = (props: any) => {
         paddingVertical: SIZES.padding * 0.8,
         alignItems: "center",
       }}
+      onPress={props.onPress}
     >
       <Text
         style={{
@@ -272,7 +279,7 @@ const Dashboard = (props: Props) => {
         {/* potfol card */}
         <View
           style={{
-            marginHorizontal: SIZES.radius,
+            marginHorizontal: SIZES.padding * 0.8,
             backgroundColor: "#F4F4F4",
             paddingHorizontal: SIZES.radius,
             paddingVertical: SIZES.radius,
@@ -280,7 +287,11 @@ const Dashboard = (props: Props) => {
             borderRadius: 8,
           }}
         >
-          <PortfolioCards label="Portfolio" value="Aggressive" />
+          <PortfolioCards
+            label="Portfolio"
+            value="Aggressive"
+            onPress={() => navigation.navigate("Portfolio")}
+          />
           <PortfolioCards label="Round-Up Settings" value="Automatic" />
           <PortfolioCards label="Recurring" value="$20/Monthly" />
           <PortfolioCards label="Beneficiary" value="1 Child" />
@@ -289,7 +300,7 @@ const Dashboard = (props: Props) => {
 
         <View
           style={{
-            marginHorizontal: SIZES.radius,
+            marginHorizontal: SIZES.padding * 0.8,
             backgroundColor: "#F4F4F4",
             paddingHorizontal: SIZES.radius,
             paddingVertical: SIZES.radius,
@@ -343,7 +354,7 @@ const Dashboard = (props: Props) => {
         <View
           style={{
             backgroundColor: COLORS.tableHeader,
-            marginHorizontal: SIZES.radius,
+            marginHorizontal: SIZES.padding * 0.8,
           }}
         >
           <View
@@ -396,6 +407,58 @@ const Dashboard = (props: Props) => {
             </Text>
           </View>
         </View>
+
+        <View
+          style={{
+            backgroundColor: "#FBFAFA",
+            marginVertical: SIZES.padding * 2,
+            marginHorizontal: SIZES.padding * 0.8,
+            borderRadius: 8,
+            paddingVertical: SIZES.radius,
+            paddingHorizontal: SIZES.radius,
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 18 / FONT_SCALE,
+              fontWeight: "500",
+            }}
+          >
+            Grow your Knowledge
+          </Text>
+          <View style={styles.faq}>
+            <View style={styles.iconContainer}>
+              <FontAwesome5 name="users" size={12} color={COLORS.primary} />
+            </View>
+
+            <Text style={styles.faqText}>What is Family Plus?</Text>
+          </View>
+          <View style={styles.faq}>
+            <View style={styles.iconContainer}>
+              <Fontisto name="redo" size={16} color={COLORS.primary} />
+            </View>
+
+            <Text style={styles.faqText}>How do Round-Ups work?</Text>
+          </View>
+          <View style={styles.faq}>
+            <View style={styles.iconContainer}>
+              <Fontisto name="wallet" size={12} color={COLORS.primary} />
+            </View>
+
+            <Text style={styles.faqText}>What is Family savings</Text>
+          </View>
+          <View style={styles.faq}>
+            <View style={styles.iconContainer}>
+              <FontAwesome5
+                name="money-bill"
+                size={12}
+                color={COLORS.primary}
+              />
+            </View>
+
+            <Text style={styles.faqText}>How can i Withdraw my money?</Text>
+          </View>
+        </View>
       </ScrollView>
     </SafeAreaProvider>
   );
@@ -424,7 +487,7 @@ const styles = StyleSheet.create({
   },
   action: {
     marginVertical: 10,
-    paddingHorizontal: 15,
+    paddingHorizontal: SIZES.padding * 0.8,
     flexDirection: "row",
     justifyContent: "space-between",
   },
@@ -442,5 +505,22 @@ const styles = StyleSheet.create({
     lineHeight: 18,
     marginTop: 6,
     color: "#150F2E",
+  },
+  faq: {
+    flexDirection: "row",
+    paddingVertical: SIZES.radius,
+  },
+  faqText: {
+    marginLeft: 15,
+    fontSize: 16 / FONT_SCALE,
+    color: COLORS.medGrey,
+  },
+  iconContainer: {
+    width: 25,
+    height: 25,
+    borderRadius: 25 / 2,
+    backgroundColor: COLORS.btnLight,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
